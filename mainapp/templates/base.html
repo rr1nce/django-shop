@@ -57,9 +57,7 @@
             </div>
         </header>
         <!-- Section-->
-        {{ temp|default:"0" }}
         {% for product in products %}
-        {% if temp %}
             <section class="row py-5 justify-content-center">
                 <div class="col-lg-2 col-md-6 mb-4 ">
                     <div class="card h-100" style="width: 18rem;">
@@ -81,28 +79,6 @@
                     </div>
                 </div>
             </section>
-        {% else %}
-            <div class="col-lg-2 col-md-6 mb-4 ">
-                <div class="card h-100" style="width: 18rem;">
-                    <!-- Product image-->
-                    <a href="{{ product.get_absolute_url }}"><img class="card-img-top" src="{{ product.image.url }}" alt="..." /></a>
-                    <!-- Product details-->
-                    <div class="card-body">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <a href="{{ product.get_absolute_url }}"><h5 class="fw-bolder ">{{ product.title }}</h5></a>
-                            <!-- Product price-->
-                            {{product.price}} тенге
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ product.get_absolute_url }}">View options</a></div>
-                    </div>
-                </div>  
-            </div>
-        {%endif%}
-        {{ temp += 1}}
         {%endfor%}
         {% endblock content %}
         <!-- Footer-->
