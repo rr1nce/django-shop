@@ -57,8 +57,9 @@
             </div>
         </header>
         <!-- Section-->
-        {% for product in products %}
+        
             <section class="row py-5 justify-content-center">
+                {% for product in products %}
                 <div class="col-lg-2 col-md-6 mb-4 ">
                     <div class="card h-100" style="width: 18rem;">
                         <!-- Product image-->
@@ -78,8 +79,8 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </section>
-        {%endfor%}
         {% endblock content %}
         <!-- Footer-->
         <footer class="py-5 bg-dark">
