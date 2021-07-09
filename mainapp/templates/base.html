@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Shop Homepage - Start Bootstrap Template</title>
+        <title>Интернет-магазин</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -31,17 +31,19 @@
                                 <li><a class="dropdown-item" href="{{ category.url }}">{{ category.name }} ({{ category.count }})</a></li>
                                 {% endfor %}
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                                <li><a class="dropdown-item" href="#!">Популярные товары</a></li>
+                                <li><a class="dropdown-item" href="#!">Новинки</a></li>
                             </ul>
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
+                        <a href="{% url 'cart' %}">
+                            <button class="btn btn-outline-dark" type="submit">
+                                <i class="bi-cart-fill me-1"></i>
+                                Корзина
+                                <span class="badge bg-dark text-white ms-1 rounded-pill">{{ cart.products.count }}</span>
+                            </button>
+                        </a>
                     </form>
                 </div>
             </div>
@@ -57,9 +59,8 @@
             </div>
         </header>
         <!-- Section-->
-        
-            <section class="row py-5 justify-content-center">
-                {% for product in products %}
+        {% for product in products %}
+                {% cycle '<section class="row py-5 justify-content-center">' '' '' '' %}
                 <div class="col-lg-2 col-md-6 mb-4 ">
                     <div class="card h-100" style="width: 18rem;">
                         <!-- Product image-->
@@ -75,12 +76,13 @@
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ product.get_absolute_url }}">View options</a></div>
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ product.get_absolute_url }}">Перейти к товару</a></div>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
-            </section>
+                
+            {% cycle '' '' '' '</section>' %}
+        {% endfor %}
         {% endblock content %}
         <!-- Footer-->
         <footer class="py-5 bg-dark">
